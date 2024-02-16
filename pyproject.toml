@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "myproject"
+version = "0.0.1"
+description = "Example of using Bazel with python `src` and `tests` dir"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Douglas Thor"},  # so that package core metadata "Author" field gets populated.
+    {name = "Douglas Thor", email = "doug.thor@gmail.com"},
+]
+maintainers = []
+keywords = []
+classifiers = []
+dependencies = [
+]
+
+[project.optional-dependencies]
+dev = [
+]
+build = [
+    "build==0.10.0",
+    "setuptools==65.5.0",
+    "wheel==0.37.1",
+]
+
+[project.urls]
+"Source Code" = "https://github.com/dougthor42/bazel-python-src-tests-example"
+"Changelog" = "https://github.com/dougthor42/bazel-python-src-tests-example/blob/master/CHANGELOG.md"
+"Bug Tracker" = "https://github.com/dougthor42/bazel-python-src-tests-example/issues"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
