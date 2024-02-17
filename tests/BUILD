@@ -13,7 +13,7 @@ py_test(
     deps = [
         # To reference something defined in another BUILD file, prefex with
         # "//". Note that the path is relative to the top-level WORKSPACE.
-        "//src/myproject:foo",
+        "//src/mypackage:foo",
         # Reference to current BUILD file
         ":__init__",
     ],
