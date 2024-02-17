@@ -8,12 +8,12 @@ py_library(
 )
 
 py_test(
-    name = "test_main",
-    srcs = ["test_main.py"],
+    name = "test_foo",
+    srcs = ["test_foo.py"],
     deps = [
         # To reference something defined in another BUILD file, prefex with
         # "//". Note that the path is relative to the top-level WORKSPACE.
-        "//src/myproject:main",
+        "//src/myproject:foo",
         # Reference to current BUILD file
         ":__init__",
     ],

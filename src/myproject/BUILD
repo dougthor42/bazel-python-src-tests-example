@@ -8,8 +8,8 @@ py_library(
 )
 
 py_library(
-    name = "main",
-    srcs = ["main.py"],
+    name = "foo",
+    srcs = ["foo.py"],
     deps = [
         ":__init__",
     ],
