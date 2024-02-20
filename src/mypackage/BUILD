@@ -1,4 +1,4 @@
-load("@rules_python//python:defs.bzl", "py_library")
+load("@rules_python//python:defs.bzl", "py_library", "py_binary")
 load("@pypi//:requirements.bzl", "requirement")
 
 py_library(
@@ -15,4 +15,12 @@ py_library(
         ":__init__",
     ],
     visibility = ["//visibility:public"],
+)
+
+py_binary(
+    name = "bar_program",
+    srcs = ["bar_program.py"],
+    deps = [
+        ":foo",
+    ],
 )
