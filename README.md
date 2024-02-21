@@ -27,3 +27,20 @@ projects that use a `src` dir and have tests outside of the package in a separat
 1. And that bazel run works: `bazel run //src/mypackage:bar_program`.
 
 If I've set up this example correctlly, everything should pass.
+
+
+### Buildifier
+
+[Buildifier][buildifier] is a linter and autoformatter for [Starlark][starlark],
+the language used by Bazel.
+
+Run with one or both of:
+
+```shell
+bazel run //:buildifier.fix
+bazel run //:buildifier.check
+```
+
+
+[buildifier]: https://github.com/bazelbuild/buildtools/blob/master/buildifier/README.md
+[starlark]: https://github.com/bazelbuild/starlark
