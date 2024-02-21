@@ -1,4 +1,4 @@
-# Use the MODULE.bazel instead of WORKSPACE
+# Use bzlmod (MODULE.bazel) instead of WORKSPACE
 common --enable_bzlmod
 
 # Show output if tests fail.
