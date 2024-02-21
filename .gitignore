@@ -212,5 +212,5 @@ tags
 # End of https://www.toptal.com/developers/gitignore/api/vim,python,bazel
 
 # Ignore Bazel's lockfile until usability gets resolved. See
-# # https://github.com/bazelbuild/bazel/issues/20369
-# MODULE.bazel.lock
+# https://github.com/bazelbuild/bazel/issues/20369
+MODULE.bazel.lock
