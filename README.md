@@ -1,6 +1,6 @@
 # Bazel for Python that uses src and tests dirs
 
-An example of how to configure bazel (via WORKSPACE, not MODULE.bazel for now) for Python
+An example of how to configure bazel (via the new bzlmod `MODULE.bazel`) for Python
 projects that use a `src` dir and have tests outside of the package in a separate
 `tests` dir.
 
@@ -20,9 +20,10 @@ projects that use a `src` dir and have tests outside of the package in a separat
 ## Usage
 
 1. Clone the repo.
+1. Make a venv and activate it.
 1. Install the package `pip install -e .[dev]`
 1. Make sure non-bazel basic unit tests work `python -m unittest`.
-1. And make sure bazel unit tests work `bazel test //tests:test_foo`.
+1. And make sure bazel unit tests work `bazel test //...`.
 1. And that bazel run works: `bazel run //src/mypackage:bar_program`.
 
 If I've set up this example correctlly, everything should pass.
