@@ -19,12 +19,33 @@ bazel_dep(name = "bazel_skylib", version = "1.5.0")
 #   4.  execute py_respositories()
 bazel_dep(name = "rules_python", version = "0.31.0")
 
+# Use a pre-release version of rules_python so that we can access new directives.
+# Once 0.32.0 is released we can remove this line.
+git_override(
+    module_name = "rules_python",
+    commit = "cdc7f2f43186899b970996f0051c702c40b10ea6",
+    remote = "https://github.com/bazelbuild/rules_python",
+)
+
 # Install a prebuilt version of buildifier. Buildifier is a linter and autoformatter
 # for starlark files.
 # TODO: Replace with an official prebuilt version when available. This currently
 # uses the unofficial https://github.com/keith/buildifier-prebuilt. See
 # https://github.com/bazelbuild/buildtools/issues/1204
 bazel_dep(name = "buildifier_prebuilt", version = "6.4.0", dev_dependency = True)
+
+# Gazelle for auto BUILD generation. See
+# https://github.com/bazelbuild/rules_python/blob/main/gazelle/README.md
+# First install ruleset specifc to python, then gazelle itself.
+bazel_dep(name = "rules_python_gazelle_plugin", version = "0.31.0")  # same version as rules_python
+bazel_dep(name = "gazelle", version = "0.35.0", repo_name = "bazel_gazelle")
+
+# Use a pre-release version of rules_python_gazelle_plugin so that we can
+# access new directives. Once 0.32.0 is released we can remove this line.
+local_path_override(
+    module_name = "rules_python_gazelle_plugin",
+    path = "/c/dev/rules_python/gazelle",
+)
 
 # Initialize the python toolchain using the rules_python extension.
 # This is similar to the "python_register_toolchains" function in WORKSPACE.
@@ -40,6 +61,8 @@ pip = use_extension("@rules_python//python/extensions:pip.bzl", "pip")
 
 # Configure how we fetch python dependencies via pip
 pip.parse(
+    # Use the bazel downloader for pulling pypi packages.
+    experimental_index_url = "https://pypi.org/simple",
     # This name is what gets used in other BUILD files with `load()`.
     hub_name = "pypi",
     python_version = "3.10",

@@ -44,3 +44,19 @@ bazel run //:buildifier.check
 
 [buildifier]: https://github.com/bazelbuild/buildtools/blob/master/buildifier/README.md
 [starlark]: https://github.com/bazelbuild/starlark
+
+
+### Gazelle
+
+[Gazelle][gazelle] is a tool for autogenerating `BUILD(.bazel)` files from source
+code.
+
+Run by calling all these, in order:
+
+```shell
+bazel run //:requirements.update
+bazel run //:gazelle_python_manifest.update
+bazel run //:gazelle
+```
+
+[gazelle]: https://github.com/bazelbuild/bazel-gazelle
