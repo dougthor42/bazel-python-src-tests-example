@@ -19,6 +19,13 @@ bazel_dep(name = "bazel_skylib", version = "1.5.0")
 #   4.  execute py_respositories()
 bazel_dep(name = "rules_python", version = "0.31.0")
 
+# Install a prebuilt version of buildifier. Buildifier is a linter and autoformatter
+# for starlark files.
+# TODO: Replace with an official prebuilt version when available. This currently
+# uses the unofficial https://github.com/keith/buildifier-prebuilt. See
+# https://github.com/bazelbuild/buildtools/issues/1204
+bazel_dep(name = "buildifier_prebuilt", version = "6.4.0", dev_dependency = True)
+
 # Initialize the python toolchain using the rules_python extension.
 # This is similar to the "python_register_toolchains" function in WORKSPACE.
 # It creates a hermetic python rather than relying on a system-installed interpreter.
