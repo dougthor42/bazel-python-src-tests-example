@@ -1,5 +1,4 @@
 load("@rules_python//python:defs.bzl", "py_library")
-load("@pypi//:requirements.bzl", "requirement")
 
 py_library(
     name = "__init__",

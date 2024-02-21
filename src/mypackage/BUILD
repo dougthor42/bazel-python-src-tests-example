@@ -1,4 +1,4 @@
-load("@rules_python//python:defs.bzl", "py_library", "py_binary")
+load("@rules_python//python:defs.bzl", "py_binary", "py_library")
 # I don't have any pip-installed requirements in this example, but if I
 # did we'd use this in `deps = [requirement("yaml")]`
 # load("@pypi//:requirements.bzl", "requirement")
@@ -7,17 +7,18 @@ py_library(
     name = "__init__",
     srcs = ["__init__.py"],
     imports = [".."],  # This causes `src` to get added to sys.path
-    deps = [],
     # All subpackages need to be able to access this because it's used as
     # a dep for all the other `__init__`s.
     visibility = [
         "//src/mypackage:__subpackages__",
     ],
+    deps = [],
 )
 
 py_library(
     name = "foo",
     srcs = ["foo.py"],
+    visibility = ["//visibility:public"],
     deps = [
         # Technically this ":__init__" isn't needed because there's nothing
         # in the __init__ file right now. However, it's how we get the sys.path
@@ -26,7 +27,6 @@ py_library(
         ":__init__",
         "//src/mypackage/subpackage:subfoo",  # relative paths not allowed.
     ],
-    visibility = ["//visibility:public"],
 )
 
 # An example of a frozen binary.
