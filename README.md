@@ -24,7 +24,7 @@ projects that use a `src` dir and have tests outside of the package in a separat
 1. Install the package `pip install -e .[dev]`
 1. Make sure non-bazel basic unit tests work `python -m unittest`.
 1. And make sure bazel unit tests work `bazel test //...`.
-1. And that bazel run works: `bazel run //src/mypackage:bar_program`.
+1. And that bazel run works: `bazel run //src/mypackage:mypackage_bin`.
 
 If I've set up this example correctlly, everything should pass.
 

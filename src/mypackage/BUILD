@@ -3,6 +3,18 @@ load("@rules_python//python:defs.bzl", "py_binary", "py_library")
 # did we'd use this in `deps = [requirement("yaml")]`
 # load("@pypi//:requirements.bzl", "requirement")
 
+# A target the represents the entire python package as a whole. It can be
+# referenced with `//src/mypackage` because bazel autoexpands this label to
+# `//src/mypackage:mypackage`.
+# Typically this target isn't use by, say, tests, because doing so would mean
+# that bazel can't cache things well. For example, if bar.py changes but foo.py
+# doesn't, it still means that this entire target is considered "changed".
+py_library(
+    name = "mypackage",
+    srcs = glob(["**/*.py"]),
+    imports = [".."],
+)
+
 py_library(
     name = "__init__",
     srcs = ["__init__.py"],
@@ -30,11 +42,32 @@ py_library(
 )
 
 # An example of a frozen binary.
-# Run with `bazel run //src/mypackage:bar_program`
+# Run with `bazel run //src/mypackage:mypackage_bin`
 py_binary(
-    name = "bar_program",
-    srcs = ["bar_program.py"],
+    name = "mypackage_bin",
+    srcs = ["__main__.py"],
+    main = "__main__.py",
     deps = [
         ":foo",
+    ],
+)
+
+# A library that is also executable (but is not the "primary" executable).
+# Execute with `bazel run //src/mypackage:foobar_bin`
+py_library(
+    name = "foobar",
+    srcs = ["foobar.py"],
+    visibility = ["//tests:__pkg__"],
+    deps = [
+        ":foo",
+    ],
+)
+
+py_binary(
+    name = "foobar_bin",
+    srcs = ["foobar.py"],
+    main = "foobar.py",
+    deps = [
+        ":foobar",
     ],
 )

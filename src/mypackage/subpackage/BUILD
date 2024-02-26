@@ -1,15 +1,16 @@
 load("@rules_python//python:defs.bzl", "py_library")
 
 py_library(
+    name = "subpackage",
+    srcs = glob(["**/*.py"]),
+    imports = ["../.."],
+)
+
+py_library(
     name = "__init__",
     srcs = ["__init__.py"],
-    # By making this depend on the parent package, lines like
-    # "from mypackage.subpackage import subfoo" end up working because
-    # the parent `src` dir is included in sys.path.
-    # The alternative is to
-    # imports = ["../.."]
-    # but that seems like it might be less maintainable?
-    deps = ["//src/mypackage:__init__"],
+    # Make sure the `src` dir, and all subpackages, are in sys.path.
+    imports = ["../.."],
 )
 
 py_library(
