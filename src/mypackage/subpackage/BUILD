@@ -10,7 +10,7 @@ py_library(
     name = "__init__",
     srcs = ["__init__.py"],
     # Make sure the `src` dir, and all subpackages, are in sys.path.
-    imports = ["../.."]
+    imports = ["../.."],
 )
 
 py_library(
