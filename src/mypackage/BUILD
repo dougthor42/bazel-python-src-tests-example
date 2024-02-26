@@ -51,3 +51,23 @@ py_binary(
         ":foo",
     ],
 )
+
+# A library that is also executable (but is not the "primary" executable).
+# Execute with `bazel run //src/mypackage:foobar_bin`
+py_library(
+    name = "foobar",
+    srcs = ["foobar.py"],
+    visibility = ["//tests:__pkg__"],
+    deps = [
+        ":foo",
+    ],
+)
+
+py_binary(
+    name = "foobar_bin",
+    srcs = ["foobar.py"],
+    main = "foobar.py",
+    deps = [
+        ":foobar",
+    ],
+)
