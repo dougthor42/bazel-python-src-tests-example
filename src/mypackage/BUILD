@@ -3,6 +3,18 @@ load("@rules_python//python:defs.bzl", "py_binary", "py_library")
 # did we'd use this in `deps = [requirement("yaml")]`
 # load("@pypi//:requirements.bzl", "requirement")
 
+# A target the represents the entire python package as a whole. It can be
+# referenced with `//src/mypackage` because bazel autoexpands this label to
+# `//src/mypackage:mypackage`.
+# Typically this target isn't use by, say, tests, because doing so would mean
+# that bazel can't cache things well. For example, if bar.py changes but foo.py
+# doesn't, it still means that this entire target is considered "changed".
+py_library(
+    name = "mypackage",
+    srcs = glob(["**/*.py"]),
+    imports = [".."],
+)
+
 py_library(
     name = "__init__",
     srcs = ["__init__.py"],
