@@ -42,10 +42,11 @@ py_library(
 )
 
 # An example of a frozen binary.
-# Run with `bazel run //src/mypackage:bar_program`
+# Run with `bazel run //src/mypackage:mypackage_bin`
 py_binary(
-    name = "bar_program",
-    srcs = ["bar_program.py"],
+    name = "mypackage_bin",
+    srcs = ["__main__.py"],
+    main = "__main__.py",
     deps = [
         ":foo",
     ],
