@@ -26,6 +26,12 @@ bazel_dep(name = "rules_python", version = "0.31.0")
 # https://github.com/bazelbuild/buildtools/issues/1204
 bazel_dep(name = "buildifier_prebuilt", version = "6.4.0", dev_dependency = True)
 
+# Gazelle for auto BUILD generation. See
+# https://github.com/bazelbuild/rules_python/blob/main/gazelle/README.md
+# First install ruleset specifc to python, then gazelle itself.
+bazel_dep(name = "rules_python_gazelle_plugin", version = "0.31.0")  # same version as rules_python
+bazel_dep(name = "gazelle", version = "0.35.0", repo_name = "bazel_gazelle")
+
 # Initialize the python toolchain using the rules_python extension.
 # This is similar to the "python_register_toolchains" function in WORKSPACE.
 # It creates a hermetic python rather than relying on a system-installed interpreter.
