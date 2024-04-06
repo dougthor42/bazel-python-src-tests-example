@@ -74,11 +74,6 @@ buildifier(
 # This directive can be set multiple times.
 # gazelle:resolve py mypackage.foobar //src/mypackage:foobar
 
-# Python's gazelle added support for the default_visibility directive in
-# https://github.com/bazelbuild/rules_python/pull/1787. We can use this to make
-# all targets visible by all tests.
-# gazelle:python_default_visibility //$python_root:__subpackages__,//tests:__subpackages__
-
 ###### End Gazelle Directives ######
 
 # This rule will compile the project requirements into a lock file that
