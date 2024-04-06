@@ -54,8 +54,10 @@ code.
 Run by calling all these, in order:
 
 ```shell
+# If any python dependencies change:
 bazel run //:requirements.update
 bazel run //:gazelle_python_manifest.update
+# Run gazelle and generate BUILD files and targets:
 bazel run //:gazelle
 ```
 
