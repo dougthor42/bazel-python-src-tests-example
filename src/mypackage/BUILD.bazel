@@ -1,0 +1,41 @@
+load("@rules_python//python:defs.bzl", "py_binary", "py_library")
+
+py_library(
+    name = "foo",
+    srcs = ["foo.py"],
+    imports = [".."],
+    visibility = [
+        "//src:__subpackages__",
+        "//tests:__subpackages__",
+    ],
+    deps = [
+        "//src/mypackage/subpackage:subfoo",
+        "@pypi//pathspec",
+    ],
+)
+
+py_library(
+    name = "foobar",
+    srcs = ["foobar.py"],
+    imports = [".."],
+    visibility = [
+        "//src:__subpackages__",
+        "//tests:__subpackages__",
+    ],
+    deps = [
+        ":foo",
+        "//src/mypackage/subpackage:subfoo",
+    ],
+)
+
+py_binary(
+    name = "mypackage_bin",
+    srcs = ["__main__.py"],
+    imports = [".."],
+    main = "__main__.py",
+    visibility = [
+        "//src:__subpackages__",
+        "//tests:__subpackages__",
+    ],
+    deps = [":foo"],
+)
