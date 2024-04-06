@@ -1,0 +1,17 @@
+# GENERATED FILE - DO NOT EDIT!
+#
+# To update this file, run:
+#   bazel run //:gazelle_python_manifest.update
+
+manifest:
+  modules_mapping:
+    pathspec: pathspec
+    pathspec.gitignore: pathspec
+    pathspec.pathspec: pathspec
+    pathspec.pattern: pathspec
+    pathspec.patterns: pathspec
+    pathspec.patterns.gitwildmatch: pathspec
+    pathspec.util: pathspec
+  pip_repository:
+    name: pypi
+integrity: e72e5d00a84c0e367082ae476df48fdf05a88a2a91a37815e5704e755950b758
