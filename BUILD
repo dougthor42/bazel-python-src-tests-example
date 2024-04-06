@@ -54,12 +54,12 @@ buildifier(
 # src/BUILD for such an example - it's how we define that the "src" dir should
 # be the root of python files and thus get added to sys.path.
 
-# This comment is a *directive* that tells Gazelle that our tests are named
-# test_foo.py instead of foo_test.py
+# This directive tells gazelle that our tests are named "test_foo.py" instead
+# of "foo_test.py".
 # gazelle:python_test_naming_convention test_$package_name$
 
 # This directive tells gazelle to make a single bazel target per python file.
-# The default is to make a single bazel target per python _package).
+# The default is to make a single bazel target per python _package_).
 # gazelle:python_generation_mode file
 
 # This directive would be used if, for example, we wanted to make pytest_test
@@ -67,7 +67,7 @@ buildifier(
 # so the directive is inactive (double #).
 ## gazelle:map_kind py_test pytest_test //tools/bazel:defs.bzl
 
-# This directive tells Gazelle to use import `foobar` using the py_library
+# This directive tells gazelle to use import `foobar` using the py_library
 # target, rather than the py_binary target (`foobar.py` is both a library
 # and an executable, so gazelle gets confuzed, saying that multiple targets
 # can satisfy the "mypackage.foobar" import).
@@ -78,6 +78,8 @@ buildifier(
 # https://github.com/bazelbuild/rules_python/pull/1787. We can use this to make
 # all targets visible by all tests.
 # gazelle:python_default_visibility //$python_root:__subpackages__,//tests:__subpackages__
+
+###### End Gazelle Directives ######
 
 # This rule will compile the project requirements into a lock file that
 # contains versions and hashes. The lock file ends up getting used when
